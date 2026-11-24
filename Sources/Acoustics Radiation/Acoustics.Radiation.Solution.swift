@@ -31,7 +31,7 @@ extension Acoustics.Radiation {
                 )
             }
             let baffled = body.mounting == .baffled
-            let images = baffled ? sources.map(\.image) : []
+            let images = baffled ? sources.map { $0.image } : []
             /// What every face adds to the equation of `x`, which is the centroid of face `own` if not nil.
             func row(_ x: Vector<3, Double>, own: Int?) -> [Kernel.Integrals] {
                 (0..<n).map { j in

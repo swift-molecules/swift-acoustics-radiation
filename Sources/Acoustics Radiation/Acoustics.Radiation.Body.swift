@@ -48,7 +48,7 @@ extension Acoustics.Radiation {
                 ? volume < 0 : mounting == .baffled && projection < 0
             self.mesh = inward ? mesh.reversed : mesh
             self.mounting = mounting
-            self.faces = inward ? faces.map(\.reversed) : faces
+            self.faces = inward ? faces.map { $0.reversed } : faces
             self.interior = Self.interior(self.faces, baffled: mounting == .baffled)
         }
     }

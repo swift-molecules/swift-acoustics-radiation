@@ -17,8 +17,14 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/swift-molecules/swift-acoustics.git", branch: "main"),
         .package(url: "https://github.com/swift-molecules/swift-galerkin.git", branch: "main"),
-        .package(url: "https://github.com/swift-molecules/swift-sparse.git", branch: "main"),
-        .package(url: "https://github.com/swift-molecules/swift-eigen.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-mesh.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-complex.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-numeric.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-frequency.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-pressure.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-power.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-acoustics-plate.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-bessel.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -26,14 +32,21 @@ let package = Package(
             dependencies: [
                 .product(name: "Acoustics", package: "swift-acoustics"),
                 .product(name: "Galerkin", package: "swift-galerkin"),
-                .product(name: "Sparse", package: "swift-sparse"),
-                .product(name: "Eigen", package: "swift-eigen"),
+                .product(name: "Mesh", package: "swift-mesh"),
+                .product(name: "Complex", package: "swift-complex"),
+                .product(name: "Numeric", package: "swift-numeric"),
+                .product(name: "Frequency", package: "swift-frequency"),
+                .product(name: "Pressure", package: "swift-pressure"),
+                .product(name: "Power", package: "swift-power"),
             ]
         ),
         .testTarget(
             name: "Acoustics Radiation Tests",
             dependencies: [
-                .target(name: "Acoustics Radiation")
+                .target(name: "Acoustics Radiation"),
+                .product(name: "Acoustics Plate", package: "swift-acoustics-plate"),
+                .product(name: "Bessel", package: "swift-bessel"),
+                .product(name: "Numeric", package: "swift-numeric"),
             ]
         ),
     ],
